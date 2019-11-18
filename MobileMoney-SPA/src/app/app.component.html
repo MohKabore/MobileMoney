@@ -1,0 +1,9 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="app-admin-wrap layout-sidebar-large">
+    <div class=" d-flex flex-column main-content-wrap">
+        <div class="container mt-1">
+            <app-nav-admin *ngIf="loggedIn()"></app-nav-admin>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

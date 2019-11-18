@@ -1,0 +1,24 @@
+<div class="card m-3">
+
+    <div class="card-body">
+        <form [formGroup]="transactionForm" (ngSubmit)="next()">
+            <div class="form-group">
+                <select name="transactionTypeId" class="form-control" id="transactionTypeId" formControlName="transactionTypeId" aria-placeholder="Type de transaction">
+                    <option *ngFor="let type of transactionTypes" [value]="type.value">{{type.label}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="number" formControlName="amount" class="form-control" id="amount" placeholder="montant de la transaction">
+            </div>
+            <div class="form-group">
+                <input type="date" class="form-control" id="date" placeholder="date de la transaction" formControlName="date">
+            </div>
+            <div class="form-group">
+                <input type="time" class="form-control" id="hour" placeholder="heure de la transaction">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">suivant</button>
+        </form>
+    </div>
+</div>
