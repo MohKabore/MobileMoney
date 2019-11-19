@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertifyService } from '../_services/alertify.service';
 import { transition } from '@angular/animations';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
   operators: any[] = [];
   ops: any[] = [];
   showDetails = false;
-  constructor(private transactionService: TransactionService, private fb: FormBuilder, private alertify: AlertifyService) { }
+  constructor(private transactionService: TransactionService, private authService: AuthService, private fb: FormBuilder, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.transactionTypes = this.transactionService.transationTypes;
@@ -66,7 +67,9 @@ export class HomeComponent implements OnInit {
 
 
   saveTransaction() {
-    this.transactionService.createTrasaction(this.transactionForm.value).subscribe(response => {
+
+    this.transaction.userId = this.authService.decodedToken.nameid;
+    this.transactionService.createTrasaction(this.transaction).subscribe(response => {
       this.alertify.success('enregistrement terminé...');
       this.transactionForm.reset();
       this.showDetails = false;

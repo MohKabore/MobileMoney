@@ -17,5 +17,7 @@ namespace MobileMoney.API.Models
         public Operator Operator { get; set; }
         public decimal Commission { get; set; }
         public DateTime InsertDate { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

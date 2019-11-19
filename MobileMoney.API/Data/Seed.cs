@@ -22,14 +22,20 @@ namespace MobileMoney.API.Data {
                 }
 
 
-                // var feeTypes = new List<FeeType>
-                // {
-                //     new FeeType{Name = "cantine"},
-                //     new FeeType{Name = "scolarité"},
-                //     new FeeType{Name = "bibliothèque"},
-                //     new FeeType{Name = "transport"}
-                // };
-                // context.AddRange(feeTypes);
+                var operators = new List<Operator>
+                {
+                    new Operator{Name = "MOOV"},
+                    new Operator{Name = "ORANGE"},
+                    new Operator{Name = "MTN"}
+                };
+                context.AddRange(operators);
+
+                var transactionTypes = new List<TransactionType>
+                {
+                    new TransactionType{Name = "Dépot"},
+                    new TransactionType{Name = "Rétrait"}
+                };
+                context.AddRange(operators);
 
                 var adminUser = new User {
                     UserName = "Admin",

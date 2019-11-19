@@ -36,7 +36,8 @@ namespace MobileMoney.API.Controllers
                 TransactionDate = transactionToCreate.Date,
                 TransactionTypeId = transactionToCreate.TransactionTypeId,
                 OperatorId = transactionToCreate.OperatorId,
-                // Commission = transactionToCreate.Commission
+                Commission = transactionToCreate.Commission,
+                UserId = transactionToCreate.UserId
             };
             // edition de l'heure
             // var tableau_heure = transactionToCreate.Hour.ToCharArray();
