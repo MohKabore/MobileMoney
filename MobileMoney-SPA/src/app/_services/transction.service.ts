@@ -61,4 +61,11 @@ export class TransactionService {
             return 0;
         }
     }
+    getOperators() {
+        return this.http.get(this.baseUrl + 'GetOperators');
+    }
+
+    createTrasaction(transaction) {
+        return this.http.post(this.baseUrl + 'CreateTransaction', transaction);
+    }
 }

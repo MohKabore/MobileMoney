@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 // import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 import { AppComponent } from './app.component';
@@ -32,7 +33,6 @@ export function tokenGetter() {
    return localStorage.getItem('token');
 }
 
-
 @NgModule({
    declarations: [
       AppComponent,
@@ -51,6 +51,14 @@ export function tokenGetter() {
       WavesModule,
       RouterModule.forRoot(appRoutes),
       ToastModule.forRoot(), MDBBootstrapModulesPro.forRoot(),
+
+      JwtModule.forRoot({
+         config: {
+            tokenGetter: tokenGetter,
+            whitelistedDomains: ['localhost:5000'],
+            blacklistedRoutes: ['localhost:5000/api/auth']
+         }
+      })
    ],
    providers: [
       MDBSpinningPreloader,

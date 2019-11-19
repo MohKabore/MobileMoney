@@ -1,24 +1,67 @@
 <div class="card m-3">
 
     <div class="card-body">
-        <form [formGroup]="transactionForm" (ngSubmit)="next()">
+        <form [formGroup]="transactionForm" (ngSubmit)="next()" *ngIf="!showDetails">
             <div class="form-group">
+                <label for="operatorId">Opérateur</label>
+                <select name="operatorId" class="form-control" id="operatorId" formControlName="operatorId" placeholder="choisir opérateur">
+                    <option *ngFor="let op of operators" [value]="op.value">{{op.label}}</option>
+                </select>
+                <label for="transactionTypeId">Type de transaction</label>
                 <select name="transactionTypeId" class="form-control" id="transactionTypeId" formControlName="transactionTypeId" aria-placeholder="Type de transaction">
                     <option *ngFor="let type of transactionTypes" [value]="type.value">{{type.label}}</option>
                 </select>
             </div>
             <div class="form-group">
+                <label for="amount">Montant</label>
                 <input type="number" formControlName="amount" class="form-control" id="amount" placeholder="montant de la transaction">
             </div>
             <div class="form-group">
+                <label for="d">date de la transaction</label>
                 <input type="date" class="form-control" id="date" placeholder="date de la transaction" formControlName="date">
             </div>
             <div class="form-group">
-                <input type="time" class="form-control" id="hour" placeholder="heure de la transaction">
+                <label for="time">Heure de la transaction</label>
+                <input type="time" class="form-control" id="hour" placeholder="heure de la transaction" formControlName="hour">
             </div>
 
 
-            <button type="submit" class="btn btn-primary">suivant</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!transactionForm.valid">suivant</button>
         </form>
+
+        <div *ngIf="showDetails">
+            <table>
+                <tr>
+                    <td>Transaction</td>
+                    <td>:</td>
+                    <td>
+                        {{transaction.detail}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Montant</td>
+                    <td>:</td>
+                    <td>
+                        {{transaction.amount}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Frais</td>
+                    <td>:</td>
+                    <td>
+                        {{transaction.commission}}
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button type="button" (click)="saveTransaction()" class="btn btn-primary">Enregistrer</button>
+                        <button type="button" (click)="cancel()" class="btn">annuler</button>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
