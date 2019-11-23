@@ -8,13 +8,16 @@ using Newtonsoft.Json;
 namespace MobileMoney.API.Data {
     public class Seed {
         public static void SeedUsers (DataContext context, UserManager<User> userManager, RoleManager<Role> roleManager) {
+
             if (!userManager.Users.Any ()) {
                 // var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
                 // var users = JsonConvert.DeserializeObject<List<User>>(userData);
 
                 var roles = new List<Role> {
                     new Role { Name = "Moderator" },
-                    new Role { Name = "Admin" }
+                    new Role { Name = "Admin" },
+                    new Role { Name = "Operator" }
+
                 };
 
                 foreach (var role in roles) {

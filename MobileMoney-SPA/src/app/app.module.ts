@@ -24,6 +24,12 @@ import localeFr from '@angular/common/locales/fr';
 import { AlertifyService } from './_services/alertify.service';
 import { NavAdminComponent } from 'src/nav/nav-admin/nav-admin.component';
 import { TransactionService } from './_services/transction.service';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule, ModalModule } from 'ngx-bootstrap';
+import { AddUserModalComponent } from './admin/add-user-modal/add-user-modal.component';
 
 
 // the second parameter 'fr' is optional
@@ -38,7 +44,12 @@ export function tokenGetter() {
       AppComponent,
       HomeComponent,
       LoginComponent,
-      NavAdminComponent
+      NavAdminComponent,
+      AdminPanelComponent,
+      UserManagementComponent,
+      RolesModalComponent,
+      AddUserModalComponent,
+      HasRoleDirective
    ],
    imports: [
       BrowserModule,
@@ -49,7 +60,13 @@ export function tokenGetter() {
       ReactiveFormsModule,
       StepperModule,
       WavesModule,
+      BsDropdownModule.forRoot(),
+      BsDatepickerModule.forRoot(),
+      ButtonsModule.forRoot(),
+      PaginationModule.forRoot(),
+      TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
+      ModalModule.forRoot(),
       ToastModule.forRoot(), MDBBootstrapModulesPro.forRoot(),
 
       JwtModule.forRoot({
@@ -65,6 +82,10 @@ export function tokenGetter() {
       AlertifyService,
       TransactionService,
       AuthGuard
+   ],
+   entryComponents: [
+      RolesModalComponent,
+      AddUserModalComponent
    ],
    bootstrap: [
       AppComponent

@@ -79,6 +79,8 @@ namespace MobileMoney.API
             {
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("ModeratePhotoRole", policy => policy.RequireRole("Admin", "Moderator"));
+                options.AddPolicy("OperatorRole", policy => policy.RequireRole("Admin", "Moderator","operator"));
+
                 options.AddPolicy("VipOnly", policy => policy.RequireRole("VIP"));
             });
 
