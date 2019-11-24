@@ -11,16 +11,16 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router, private alertify: AlertifyService) { }
 
   canActivate(next: ActivatedRouteSnapshot): boolean {
-    // const roles = next.firstChild.data[ 'roles' ] as Array<string>;
-    // if (roles) {
-    //   const match = this.authService.roleMatch(roles);
-    //   if (match) {
-    //     return true;
-    //   } else {
-    //     this.router.navigate(['home']);
-    //     this.alertify.error('You are not authorised to access this area');
-    //   }
-    // }
+    const roles = next.firstChild.data[ 'roles' ] as Array<string>;
+    if (roles) {
+      const match = this.authService.roleMatch(roles);
+      if (match) {
+        return true;
+      } else {
+        this.router.navigate(['home']);
+        this.alertify.error('Désolé vous ne pouvez pas accéder a cette page');
+      }
+    }
 
     if (this.authService.loggedIn()) {
       return true;
