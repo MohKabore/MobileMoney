@@ -1,0 +1,48 @@
+<div class="m-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <span>Recherche</span>
+                <hr>
+                <div class="form-inline m-3">
+                    <input type="date" placeholder="date début" class="form-control" name="startDate" [(ngModel)]="dateInterval.startDate">
+                    <input type="date" placeholder="date fin" class="form-control" style="margin-left: 10px;" name="endDate" [(ngModel)]="dateInterval.endDate">
+                    <input type="button" value="rechercher" (click)="searchTransaction()" class="btn btn-primary" style="margin-left: 10px;">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <table class="table table-condensed table-striped" *ngIf="transactions">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            <th>Type</th>
+                            <th>Opérateur</th>
+                            <th>Montant</th>
+                            <th>Commission</th>
+                            <th *appHasRole="['Admin']">Utilisateur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let transaction of transactions, index as i">
+                            <td>{{i+1}}</td>
+                            <td>{{transaction.transactionDate | date :'dd-MMM-yy'}}</td>
+                            <td>{{transaction.transactionDate | date:"HH:mm"}}</td>
+                            <td>{{transaction.transactionType.name}}</td>
+                            <td>{{transaction.operator.name}}</td>
+                            <td>{{transaction.amount}}</td>
+                            <td>{{transaction.commission}}</td>
+                            <td *appHasRole="['Admin']">{{transaction.user.userName}}</td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

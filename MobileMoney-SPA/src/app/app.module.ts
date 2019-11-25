@@ -30,6 +30,7 @@ import { HasRoleDirective } from './_directives/hasRole.directive';
 import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
 import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule, ModalModule } from 'ngx-bootstrap';
 import { AddUserModalComponent } from './admin/add-user-modal/add-user-modal.component';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
 
 
 // the second parameter 'fr' is optional
@@ -49,6 +50,7 @@ export function tokenGetter() {
       UserManagementComponent,
       RolesModalComponent,
       AddUserModalComponent,
+      TransactionListComponent,
       HasRoleDirective
    ],
    imports: [

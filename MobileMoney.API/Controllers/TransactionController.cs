@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +53,63 @@ namespace MobileMoney.API.Controllers
                 return Ok();
             else
                 return BadRequest();
+        }
+
+
+        [HttpPost("SearchTransactions")]
+        public async Task<IActionResult> SearchTransactions(DateIntervalDto dateInterval)
+        {
+
+            var transactions = new List<Transaction>();
+            if (dateInterval.StartDate == null && dateInterval.EndtDate == null)
+            {
+                transactions = await _context.Transactions
+                                                  .Include(u => u.User)
+                                                  .Include(t => t.TransactionType)
+                                                  .Include(t => t.Operator)
+                                                  .OrderBy(t => t.TransactionDate)
+                                                  .ToListAsync();
+            }
+
+
+            if (dateInterval.StartDate != null && dateInterval.EndtDate == null)
+            {
+                transactions = await _context.Transactions
+                                                .Include(u => u.User)
+                                                .Include(t => t.TransactionType)
+                                                    .Include(t => t.Operator)
+                                                .Where(t => t.TransactionDate >= Convert.ToDateTime(dateInterval.StartDate))
+                                                .OrderBy(t => t.TransactionDate)
+                                                .ToListAsync();
+            }
+
+
+            if (dateInterval.StartDate == null && dateInterval.EndtDate != null)
+            {
+                transactions = await _context.Transactions
+                                                .Include(u => u.User)
+                                                .Include(t => t.TransactionType)
+                                                .Include(t => t.Operator)
+                                                .Where(t => t.TransactionDate <= Convert.ToDateTime(dateInterval.EndtDate))
+                                                .OrderBy(t => t.TransactionDate)
+                                                .ToListAsync();
+            }
+
+
+            if (dateInterval.StartDate != null && dateInterval.EndtDate != null)
+            {
+                transactions = await _context.Transactions
+                                               .Include(u => u.User)
+                                               .Include(t => t.TransactionType)
+                                               .Include(t => t.Operator)
+                                               .Where(t => t.TransactionDate <= Convert.ToDateTime(dateInterval.EndtDate) && t.TransactionDate >= Convert.ToDateTime(dateInterval.StartDate))
+                                               .OrderBy(t => t.TransactionDate)
+                                               .ToListAsync();
+            }
+
+
+            return Ok(transactions);
+
         }
 
     }

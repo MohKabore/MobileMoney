@@ -13,6 +13,9 @@
                 <!-- <a class="nav-link" [routerLink]="['/messages']">Messages</a> -->
             </li>
             <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/list']" *appHasRole="['Admin','Moderator','Operator']">Liste</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['/admin']" *appHasRole="['Admin']">Comptes</a>
             </li>
         </ul>
@@ -28,7 +31,7 @@
             <div class="dropdown-menu mt-3" *dropdownMenu>
                 <!-- <a class="dropdown-item" [routerLink]="['/member/edit']">
                     <i class="fa fa-user"></i> Edit Profile</a> -->
-                <div class="dropdown-divider"></div>
+                <!-- <div class="dropdown-divider"></div> -->
                 <a class="dropdown-item" (click)="logout()">
                     <i class="fa fa-sign-out"></i> se deconnecter</a>
             </div>

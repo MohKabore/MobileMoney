@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { AlertifyService } from './alertify.service';
 import { Router } from '@angular/router';
 
@@ -67,5 +67,10 @@ export class TransactionService {
 
     createTrasaction(transaction) {
         return this.http.post(this.baseUrl + 'CreateTransaction', transaction);
+    }
+
+    searchTransaction(dateInterVal) {
+
+        return this.http.post(this.baseUrl + 'SearchTransactions', dateInterVal);
     }
 }
