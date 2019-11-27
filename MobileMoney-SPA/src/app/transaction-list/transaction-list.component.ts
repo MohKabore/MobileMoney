@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../_services/transction.service';
-import { V4MAPPED } from 'dns';
 import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
